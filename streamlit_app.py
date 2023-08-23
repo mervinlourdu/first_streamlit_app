@@ -42,5 +42,5 @@ my_data_row_panda=my_data_row_panda.set_index(0)
 
 
 fruits_selected2=streamlit.multiselect("Pick some fruits:", list(my_data_row_panda.index))
-#fruits_to_show2 = my_fruit_list.loc[fruits_selected]
+streamlit.text(fruits_selected2)
 #streamlit.dataframe(fruits_to_show)
