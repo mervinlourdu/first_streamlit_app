@@ -36,7 +36,7 @@ my_data_row = my_cur.fetchall()
 streamlit.header("The fruit load list contains")
 streamlit.dataframe(my_data_row)
 my_data_row_panda=pandas.core.frame.DataFrame(my_data_row)
-my_data_row_panda=my_data_row_panda.set_index('FRUIT_NAME')
+my_data_row_panda=my_data_row_panda.set_index('0')
 
 
 
