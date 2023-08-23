@@ -53,9 +53,14 @@ if streamlit.button('Get fruit Load List'):
       streamlit.dataframe(my_data_row)
 
 
-my_data_row_panda=pandas.core.frame.DataFrame(my_data_row)
-my_data_row_panda=my_data_row_panda.set_index(0)
-fruits_selected2=streamlit.multiselect("Pick some fruits:", list(my_data_row_panda.index))
-for i in fruits_selected2:
-  my_cur.execute("insert into fruit_load_list values ('" + i + "')")
-  streamlit.text("Thanks for adding "+i)
+def insert_row_snowflake(new_fruit):
+      with my_cnx.cursor() as my_cur:
+            my_cur.execute("insert into fruit_load_list values ('from streamlit')")
+            return "Thanks for adding "+new_fruit
+
+add_my_fruit = streamlit.text_input('What fruit would you lke to add?')
+if streamlit.button('Add a Fruit to the list'):
+      my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+      back_=insert_row_snowflake(add_my_fruit)
+      streamlit.text(back)
+
