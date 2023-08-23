@@ -42,5 +42,6 @@ my_data_row_panda=my_data_row_panda.set_index(0)
 
 
 fruits_selected2=streamlit.multiselect("Pick some fruits:", list(my_data_row_panda.index))
-streamlit.text(fruits_selected2)
-#streamlit.dataframe(fruits_to_show)
+for i in fruits_selected2:
+  my_cur.execute("insert into fruit_load_list values ('" + i + "')")
+  streamlit.text("Thanks for adding "+i)
